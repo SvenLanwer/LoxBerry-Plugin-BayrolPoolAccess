@@ -1,10 +1,11 @@
 #!/bin/bash
 set -e
 
-SERVICE="bayrolpoolaccess.service"
+PLUGIN="REPLACELBPPLUGINDIR"
+SERVICE="${PLUGIN}.service"
 SERVICE_FILE="/etc/systemd/system/$SERVICE"
 
-echo "<INFO> Entferne Bayrol PoolAccess Systemdienst"
+echo "<INFO> Entferne Bayrol PoolAccess Systemdienst: $SERVICE"
 
 systemctl disable --now "$SERVICE" 2>/dev/null || true
 

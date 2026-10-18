@@ -1,11 +1,9 @@
 #!/bin/bash
+set -e
 
-PLUGIN="bayrolpoolaccess"
-LBHOME="${5:-/opt/loxberry}"
-
-PBIN="$LBHOME/bin/plugins/$PLUGIN"
-PCONFIG="$LBHOME/config/plugins/$PLUGIN"
-PDATA="$LBHOME/data/plugins/$PLUGIN"
+PBIN="REPLACELBPBINDIR"
+PCONFIG="REPLACELBPCONFIGDIR"
+PDATA="REPLACELBPDATADIR"
 VENV="$PDATA/venv"
 
 echo "<INFO> Richte Bayrol PoolAccess ein"
@@ -13,20 +11,18 @@ echo "<INFO> Richte Bayrol PoolAccess ein"
 mkdir -p "$PCONFIG" "$PDATA"
 
 # Gesicherte Konfiguration nach einem Upgrade wiederherstellen
-BACKUP="$LBHOME/data/system/install/${PLUGIN}-config-backup.json"
+PLUGIN="REPLACELBPPLUGINDIR"
+LBHOME="REPLACELBHOMEDIR"
+BACKUP="$LBHOME/data/system/${PLUGIN}-config-backup.json"
 
-if [ -f "$BACKUP" ]; then
-    cp "$BACKUP" "$PCONFIG/config.json" || {
-        echo "<ERROR> Konfiguration konnte nicht wiederhergestellt werden"
-        exit 2
-    }
-
+if [ -f "$BACKUP" ] && [ ! -f "$PCONFIG/config.json" ]; then
+    cp -p "$BACKUP" "$PCONFIG/config.json"
     chmod 600 "$PCONFIG/config.json"
-    rm -f "$BACKUP"
-
-    echo "<OK> Bestehende Bayrol-Konfiguration wiederhergestellt"
+    echo "<OK> Bayrol-Konfiguration nach Upgrade wiederhergestellt"
 fi
-# Konfiguration nur bei Erstinstallation erstellen
+
+
+# Vorhandene Konfiguration niemals überschreiben
 if [ ! -f "$PCONFIG/config.json" ]; then
     if [ ! -f "$PCONFIG/config.example.json" ]; then
         echo "<ERROR> config.example.json fehlt"
