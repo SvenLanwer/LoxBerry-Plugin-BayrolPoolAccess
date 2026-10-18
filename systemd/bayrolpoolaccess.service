@@ -1,0 +1,17 @@
+[Unit]
+Description=Bayrol PoolAccess MQTT Bridge
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=loxberry
+Group=loxberry
+WorkingDirectory=/opt/loxberry/bin/plugins/bayrolpoolaccess
+ExecCondition=/usr/bin/python3 -c "import json,sys; c=json.load(open(sys.argv[1])); s=c.get('source',{}); d=c.get('destination',{}); sys.exit(0 if all([s.get('host'),s.get('username'),s.get('password'),d.get('host')]) else 1)" /opt/loxberry/config/plugins/bayrolpoolaccess/config.json
+ExecStart=/opt/loxberry/data/plugins/bayrolpoolaccess/venv/bin/python /opt/loxberry/bin/plugins/bayrolpoolaccess/bayrol_bridge.py --config /opt/loxberry/config/plugins/bayrolpoolaccess/config.json
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

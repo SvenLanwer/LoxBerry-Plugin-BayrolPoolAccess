@@ -1,0 +1,60 @@
+#!/bin/bash
+
+PLUGIN="bayrolpoolaccess"
+LBHOME="${5:-/opt/loxberry}"
+
+PBIN="$LBHOME/bin/plugins/$PLUGIN"
+PCONFIG="$LBHOME/config/plugins/$PLUGIN"
+PDATA="$LBHOME/data/plugins/$PLUGIN"
+VENV="$PDATA/venv"
+
+echo "<INFO> Richte Bayrol PoolAccess ein"
+
+mkdir -p "$PCONFIG" "$PDATA"
+
+# Gesicherte Konfiguration nach einem Upgrade wiederherstellen
+BACKUP="$LBHOME/data/system/install/${PLUGIN}-config-backup.json"
+
+if [ -f "$BACKUP" ]; then
+    cp "$BACKUP" "$PCONFIG/config.json" || {
+        echo "<ERROR> Konfiguration konnte nicht wiederhergestellt werden"
+        exit 2
+    }
+
+    chmod 600 "$PCONFIG/config.json"
+    rm -f "$BACKUP"
+
+    echo "<OK> Bestehende Bayrol-Konfiguration wiederhergestellt"
+fi
+# Konfiguration nur bei Erstinstallation erstellen
+if [ ! -f "$PCONFIG/config.json" ]; then
+    if [ ! -f "$PCONFIG/config.example.json" ]; then
+        echo "<ERROR> config.example.json fehlt"
+        exit 2
+    fi
+
+    cp "$PCONFIG/config.example.json" "$PCONFIG/config.json"
+    chmod 600 "$PCONFIG/config.json"
+    echo "<INFO> Neue Konfiguration angelegt"
+fi
+
+# Python-Abhängigkeiten installieren
+if [ ! -f "$PBIN/requirements.txt" ]; then
+    echo "<ERROR> requirements.txt fehlt"
+    exit 2
+fi
+
+if [ ! -x "$VENV/bin/python" ]; then
+    python3 -m venv "$VENV" || {
+        echo "<ERROR> Python-Umgebung konnte nicht erstellt werden"
+        exit 2
+    }
+fi
+
+"$VENV/bin/python" -m pip install -r "$PBIN/requirements.txt" || {
+    echo "<ERROR> Python-Abhängigkeiten konnten nicht installiert werden"
+    exit 2
+}
+
+echo "<OK> Bayrol PoolAccess erfolgreich vorbereitet"
+exit 0

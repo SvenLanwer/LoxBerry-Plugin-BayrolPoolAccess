@@ -1,0 +1,48 @@
+
+# Persönliche Bayrol- und MQTT-Zugangsdaten
+config/config.json
+**/config.json
+*.env
+.env*
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Entwicklungsumgebung
+.idea/
+.vscode/
+
+# Temporäre Dateien und Logs
+*.log
+*.tmp
+*.bak
+*.backup
+
+# Betriebssystem
+.DS_Store
+Thumbs.db
+
+# Lokale Sicherungen
+*config-backup*
+*config-before*
+
+
+# Alte Plugin-Installationspakete
+BayrolPoolAccess*.zip
+
+# Entwicklungs- und Sicherungsskripte
+Bayrol_Lox_dev.py
+Bayrol_Lox_original.py
+
+# Lokale Hilfsdateien
+root@lox
+
+# Lokale Verbindungstests
+test_bayrol_messages.py
+tests/
+
+

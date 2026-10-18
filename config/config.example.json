@@ -1,0 +1,55 @@
+
+{
+  "source": {
+    "host": "www.bayrol-poolaccess.de",
+    "port": 8083,
+    "username": "",
+    "password": "",
+    "topic_prefix": "d02/DEINE-GERAETE-ID/v/"
+  },
+  "destination": {
+    "host": "",
+    "port": 1883,
+    "username": "",
+    "password": "",
+    "topic_prefix": "Bayrol/"
+  },
+  "topics": [
+    {
+      "id": "4.98",
+      "name": "Wassertemperatur",
+      "unit": "°C",
+      "enabled": true
+    },
+    {
+      "id": "4.182",
+      "name": "pH-Wert",
+      "unit": "pH",
+      "enabled": true
+    },
+    {
+      "id": "4.82",
+      "name": "Redox / ORP",
+      "unit": "mV",
+      "enabled": true
+    },
+    {
+      "id": "4.1",
+      "name": "Salzgehalt",
+      "unit": "g/l",
+      "enabled": true
+    },
+    {
+      "id": "4.100",
+      "name": "Leitfähigkeit",
+      "unit": "mS/cm",
+      "enabled": true
+    },
+    {
+      "id": "5.11",
+      "name": "Weiterer Messwert",
+      "unit": "",
+      "enabled": true
+    }
+  ]
+}

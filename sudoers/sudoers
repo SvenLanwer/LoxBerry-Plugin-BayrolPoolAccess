@@ -1,0 +1,1 @@
+loxberry ALL=(root) NOPASSWD: /usr/bin/systemctl restart bayrolpoolaccess.service
