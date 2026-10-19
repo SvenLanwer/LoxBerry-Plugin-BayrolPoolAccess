@@ -1,4 +1,4 @@
-# LoxBerry Plugin – Bayrol PoolAccess
+# LoxBerry Plugin – Bayrol Automatic Salt
 
 A LoxBerry plugin that connects Bayrol PoolAccess to a local MQTT broker, making pool measurements available to Loxone and other home automation systems.
 
