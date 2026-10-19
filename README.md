@@ -1,10 +1,10 @@
 # LoxBerry Plugin – Bayrol Automatic Salt
 
-A LoxBerry plugin that connects Bayrol PoolAccess to a local MQTT broker, making pool measurements available to Loxone and other home automation systems.
+A LoxBerry plugin that connects Bayrol Automatic Slat to a local MQTT broker, making pool measurements available to Loxone and other home automation systems.
 
 ## Features
 
-- Connects to Bayrol PoolAccess using the configured account credentials.
+- Connects to Bayrol Automatic Slat using the configured account credentials.
 - Receives pool measurement updates from the PoolAccess service.
 - Publishes the received values to a local MQTT broker.
 - Provides a LoxBerry web interface for configuration.
@@ -15,9 +15,9 @@ A LoxBerry plugin that connects Bayrol PoolAccess to a local MQTT broker, making
 ## Requirements
 
 - LoxBerry with Python 3 support
-- Network access to Bayrol PoolAccess
+- Network access to Bayrol Automatic Salt
 - Local MQTT broker, such as the LoxBerry MQTT Gateway
-- Bayrol PoolAccess account and compatible pool controller
+- Bayrol Webportal account and Bayrol Automatic Salt pool controller
 
 ## Installation
 
